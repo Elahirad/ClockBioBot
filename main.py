@@ -8,6 +8,7 @@ api_id = os.environ.get("API_ID")
 api_hash = os.environ.get("API_HASH")
 bio_string = os.environ.get("BIO_STR")
 session_name = os.environ.get("SESSION_NAME")
+method = os.environ.get("METHOD")
 print("Working with API ID : " + api_id)
 print("Working with API HASH : " + api_hash)
 print("Bio String is : " + bio_string)
@@ -20,7 +21,10 @@ async def main():
             while True:
                 now = datetime.datetime.now()
                 if (now.second == 0):
-                    string = bio_string + now.strftime("%H:%M")
+                    if (method == 24):
+                        string = bio_string + now.strftime("%H:%M")
+                    else :
+                        string = bio_string + now.strftime("%I:%M %p")
                     await BioBotClient.update_profile(bio=string)
                     print("Bio Updated with : " + string)
                     await asyncio.sleep(10)
