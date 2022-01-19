@@ -25,7 +25,6 @@ async def main():
                     print("Bio Updated with : " + string)
                     await asyncio.sleep(10)
                 await asyncio.sleep(0.5)
-                print(now.second)
         except FloodWait as e:
             await asyncio.sleep(e.x)
 
